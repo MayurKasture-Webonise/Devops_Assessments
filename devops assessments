@@ -1,0 +1,415 @@
+webonise@webonise:~$ wget
+wget: missing URL
+Usage: wget [OPTION]... [URL]...
+
+Try `wget --help' for more options.
+webonise@webonise:~$ https://github.com/arinpro/postgres-sample-db-dvdrental/raw/master/dvdrental_backup.tar
+bash: https://github.com/arinpro/postgres-sample-db-dvdrental/raw/master/dvdrental_backup.tar: No such file or directory
+webonise@webonise:~$ wget https://github.com/arinpro/postgres-sample-db-dvdrental/raw/master/dvdrental_backup.tar
+--2021-09-29 16:24:23--  https://github.com/arinpro/postgres-sample-db-dvdrental/raw/master/dvdrental_backup.tar
+Resolving github.com (github.com)... 13.234.176.102
+Connecting to github.com (github.com)|13.234.176.102|:443... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: https://raw.githubusercontent.com/arinpro/postgres-sample-db-dvdrental/master/dvdrental_backup.tar [following]
+--2021-09-29 16:24:25--  https://raw.githubusercontent.com/arinpro/postgres-sample-db-dvdrental/master/dvdrental_backup.tar
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.110.133, 185.199.108.133, 185.199.109.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.110.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 2835456 (2.7M) [application/octet-stream]
+Saving to: ‘dvdrental_backup.tar’
+
+dvdrental_backup.tar                100%[=================================================================>]   2.70M   315KB/s    in 7.7s    
+
+2021-09-29 16:24:33 (362 KB/s) - ‘dvdrental_backup.tar’ saved [2835456/2835456]
+
+webonise@webonise:~$ createdb dvdrental
+createdb: error: database creation failed: ERROR:  database "dvdrental" already exists
+webonise@webonise:~$ psql
+psql: error: FATAL:  database "webonise" does not exist
+webonise@webonise:~$ sudo psql < dvdrental
+bash: dvdrental: No such file or directory
+webonise@webonise:~$ pwd
+/home/webonise
+webonise@webonise:~$ ls
+ blog-application.js   Documents              examples.desktop   Music      ruby-3.0.2          rubygems-1.8.11        snap        Videos
+'dbms ass querys'      Downloads              git_workspace      Pictures   ruby-3.0.2.tar.gz  'rubygems-1.8 (1).11'   Templates
+ Desktop               dvdrental_backup.tar   IdeaProjects       Public     rubygems-1.5.0      rubygems-1.8.11.tgz    test_db
+webonise@webonise:~$ cd dvdrental_backup.tar
+bash: cd: dvdrental_backup.tar: Not a directory
+webonise@webonise:~$ tar -xvf dvdrental_backup.tar
+toc.dat
+3057.dat
+3065.dat
+3059.dat
+3067.dat
+3069.dat
+3055.dat
+3061.dat
+3062.dat
+3063.dat
+3071.dat
+3073.dat
+3075.dat
+3077.dat
+3079.dat
+3081.dat
+restore.sql
+webonise@webonise:~$ create db dvdrental
+
+Command 'create' not found, did you mean:
+
+  command 'pcreate' from deb pbuilder-scripts (22)
+
+Try: sudo apt install <deb name>
+
+webonise@webonise:~$ sudo psql < create db dvdrental
+bash: create: No such file or directory
+webonise@webonise:~$ psql
+psql: error: FATAL:  database "webonise" does not exist
+webonise@webonise:~$ postgres=# CREATE DATABASE dvdrental
+CREATE: command not found
+webonise@webonise:~$ psql dbname < restore.sql
+psql: error: FATAL:  database "dbname" does not exist
+webonise@webonise:~$ create user webonise superuser
+
+Command 'create' not found, did you mean:
+
+  command 'pcreate' from deb pbuilder-scripts (22)
+
+Try: sudo apt install <deb name>
+
+webonise@webonise:~$ psql < create user webonise superuser
+bash: create: No such file or directory
+webonise@webonise:~$ sudo -u postgres createuser --superuser webonise
+[sudo] password for webonise: 
+createuser: error: creation of new role failed: ERROR:  role "webonise" already exists
+webonise@webonise:~$ sudo -u postgres createuser --superuser webonise
+createuser: error: creation of new role failed: ERROR:  role "webonise" already exists
+webonise@webonise:~$ psql dbname < restore.sql
+psql: error: FATAL:  database "dbname" does not exist
+webonise@webonise:~$ pg_dump restore > restore.sql
+pg_dump: error: connection to database "restore" failed: FATAL:  database "restore" does not exist
+webonise@webonise:~$ ls
+ 3055.dat   3063.dat   3073.dat   blog-application.js   dvdrental_backup.tar   Pictures            rubygems-1.5.0         Templates
+ 3057.dat   3065.dat   3075.dat  'dbms ass querys'      examples.desktop       Public              rubygems-1.8.11        test_db
+ 3059.dat   3067.dat   3077.dat   Desktop               git_workspace          restore.sql        'rubygems-1.8 (1).11'   toc.dat
+ 3061.dat   3069.dat   3079.dat   Documents             IdeaProjects           ruby-3.0.2          rubygems-1.8.11.tgz    Videos
+ 3062.dat   3071.dat   3081.dat   Downloads             Music                  ruby-3.0.2.tar.gz   snap
+webonise@webonise:~$ la
+ 3055.dat   3077.dat             'dbms ass querys'       .ICEauthority    .npm                   rubygems-1.8.11.tgz         .wget-hsts
+ 3057.dat   3079.dat              .dbshell               IdeaProjects     Pictures               .rvm                        .yarn
+ 3059.dat   3081.dat              Desktop                .irb-history     .pki                   snap                        .yarnrc
+ 3061.dat   .android              Documents              .java            .profile               .ssh                        .zlogin
+ 3062.dat   .bash_history         Downloads              .jdks            Public                 .sudo_as_admin_successful   .zoom
+ 3063.dat   .bash_logout          dvdrental_backup.tar   .lesshst         .rbenv                 Templates                   .zshrc
+ 3065.dat   .bash_profile         examples.desktop       .local           restore.sql            test_db
+ 3067.dat   .bashrc               .gem                   .mkshrc          ruby-3.0.2             .thunderbird
+ 3069.dat   blog-application.js   .gitconfig             .mongorc.js      ruby-3.0.2.tar.gz      toc.dat
+ 3071.dat   .bundle               git_workspace          .mozilla         rubygems-1.5.0         Videos
+ 3073.dat   .cache                .gnome                 Music            rubygems-1.8.11        .viminfo
+ 3075.dat   .config               .gnupg                 .mysql_history  'rubygems-1.8 (1).11'   .vscode
+webonise@webonise:~$ ls
+ 3055.dat   3063.dat   3073.dat   blog-application.js   dvdrental_backup.tar   Pictures            rubygems-1.5.0         Templates
+ 3057.dat   3065.dat   3075.dat  'dbms ass querys'      examples.desktop       Public              rubygems-1.8.11        test_db
+ 3059.dat   3067.dat   3077.dat   Desktop               git_workspace          restore.sql        'rubygems-1.8 (1).11'   toc.dat
+ 3061.dat   3069.dat   3079.dat   Documents             IdeaProjects           ruby-3.0.2          rubygems-1.8.11.tgz    Videos
+ 3062.dat   3071.dat   3081.dat   Downloads             Music                  ruby-3.0.2.tar.gz   snap
+webonise@webonise:~$ cd devdrental_backup.tar
+bash: cd: devdrental_backup.tar: No such file or directory
+webonise@webonise:~$ cd dvdrental_backup.tar
+bash: cd: dvdrental_backup.tar: Not a directory
+webonise@webonise:~$ pg_dump restore > restore.sql
+pg_dump: error: connection to database "restore" failed: FATAL:  database "restore" does not exist
+webonise@webonise:~$ psql dbname < restore.sql
+psql: error: FATAL:  database "dbname" does not exist
+webonise@webonise:~$ postgres=# CREATE DATABASE dvdrental
+CREATE: command not found
+webonise@webonise:~$ sudo psql < create db dvdrental
+bash: create: No such file or directory
+webonise@webonise:~$ 
+webonise@webonise:~$ sudo - postgres
+sudo: -: command not found
+webonise@webonise:~$ sudo su - postgres
+postgres@webonise:~$ psql
+psql (13.4 (Ubuntu 13.4-1.pgdg20.04+1), server 12.8 (Ubuntu 12.8-0ubuntu0.20.04.1))
+Type "help" for help.
+
+postgres=# CREATE DATABASE dvdrental;
+ERROR:  database "dvdrental" already exists
+postgres=# exit 
+postgres@webonise:~$ C:\>cd C:\Program Files\PostgreSQL\12\bin
+C:>cd: command not found
+postgres@webonise:~$ cd C:\Program Files\PostgreSQL\12\bin
+-bash: cd: too many arguments
+postgres@webonise:~$ ls
+12  13
+postgres@webonise:~$ pwd
+/var/lib/postgresql
+postgres@webonise:~$ cd 13
+postgres@webonise:~/13$ ls
+main
+postgres@webonise:~/13$ cd ..
+postgres@webonise:~$ cd ..
+postgres@webonise:/var/lib$ cd ..
+postgres@webonise:/var$ cd ..
+postgres@webonise:/$ pwd
+/
+postgres@webonise:/$ cd usr
+postgres@webonise:/usr$ ls
+bin  games  include  lib  libexec  local  sbin	share  src
+postgres@webonise:/usr$ cd lib
+postgres@webonise:/usr/lib$ la
+la: command not found
+postgres@webonise:/usr/lib$ ls
+accountsservice        ghostscript		   libreoffice		 pm-utils		    sysstat
+apg		       girepository-1.0		   linux		 policykit-1		    systemd
+apt		       git-core			   linux-boot-probes	 postgresql		    system-service
+aspell		       gnome-initial-setup	   locale		 pppd			    sysusers.d
+bfd-plugins	       gnome-session		   lp_solve		 pulse-13.99.1		    tc
+binfmt.d	       gnome-settings-daemon-3.0   man-db		 python2.7		    thunderbird
+bluetooth	       gnome-shell		   mecab		 python3		    thunderbird-addons
+bolt		       gnupg			   memtest86+		 python3.6		    tmpfiles.d
+chromium-browser       gnupg2			   mime			 python3.8		    ubiquity
+cnf-update-db	       gold-ld			   modules-load.d	 python3.9		    ubuntu-advantage
+command-not-found      groff			   mysql		 rhythmbox		    ubuntu-release-upgrader
+compat-ld	       grub			   networkd-dispatcher	 rsyslog		    udisks2
+cups		       grub-legacy		   NetworkManager	 ruby			    unity-settings-daemon-1.0
+dbus-1.0	       gst-install-plugins-helper  nginx		 rygel			    update-notifier
+debug		       gvfs			   node_modules		 sasl2			    upower
+dpkg		       ibus			   notification-daemon	 shotwell		    valgrind
+eject		       initramfs-tools		   nvidia		 slack			    vino
+emacsen-common	       ispell			   openssh		 snapd			    X11
+environment.d	       jvm			   os-prober		 software-properties	    x86_64-linux-gnu
+evolution-data-server  kernel			   os-probes		 speech-dispatcher-modules  xorg
+file		       klibc			   os-release		 ssl			    xserver-xorg-video-intel
+firefox		       language-selector	   packagekit		 sudo			    zeitgeist
+firefox-addons	       libmbim			   pcmciautils		 sysctl.d
+gcc		       libnetpbm.so.10		   php			 syslinux
+gdm3		       libnetpbm.so.10.0	   pkgconfig		 SYSLINUX
+gettext		       libqmi			   pkg-config.multiarch  syslinux-legacy
+postgres@webonise:/usr/lib$ cd postgresql
+postgres@webonise:/usr/lib/postgresql$ ls 
+12  13
+postgres@webonise:/usr/lib/postgresql$ cd 13 
+postgres@webonise:/usr/lib/postgresql/13$ ls
+bin  lib
+postgres@webonise:/usr/lib/postgresql/13$ cd bin
+postgres@webonise:/usr/lib/postgresql/13/bin$ pwd
+/usr/lib/postgresql/13/bin
+postgres@webonise:/usr/lib/postgresql/13/bin$ pg_restore -U postgres -d dvdrental
+C:\sampledb\dvdrental.tar
+^C
+postgres@webonise:/usr/lib/postgresql/13/bin$ pg_restore -U postgres -d dvdrental C:\sampledb\dvdrental.tar
+pg_restore: error: could not open input file "C:sampledbdvdrental.tar": No such file or directory
+postgres@webonise:/usr/lib/postgresql/13/bin$ pg_restore -U postgres -d dvdrental dvdrental.tar
+pg_restore: error: could not open input file "dvdrental.tar": No such file or directory
+postgres@webonise:/usr/lib/postgresql/13/bin$ pg_restore -U postgres -d dvdrental
+^[[D
+^C
+postgres@webonise:/usr/lib/postgresql/13/bin$ pg_restore -U postgres -d dvdrental desktop\dvdrental.tar
+pg_restore: error: could not open input file "desktopdvdrental.tar": No such file or directory
+postgres@webonise:/usr/lib/postgresql/13/bin$ psql
+psql (13.4 (Ubuntu 13.4-1.pgdg20.04+1), server 12.8 (Ubuntu 12.8-0ubuntu0.20.04.1))
+Type "help" for help.
+
+postgres=# \q
+postgres@webonise:/usr/lib/postgresql/13/bin$ pg_restore --dbname=dvdrental --verbose
+^C
+postgres@webonise:/usr/lib/postgresql/13/bin$ pg_restore --dbname=dvdrental --verbose dvdrental.tar
+pg_restore: error: could not open input file "dvdrental.tar": No such file or directory
+postgres@webonise:/usr/lib/postgresql/13/bin$ pg_restore --dbname=dvdrental --verbose dvdrental_backup.tar
+pg_restore: error: could not open input file "dvdrental_backup.tar": No such file or directory
+postgres@webonise:/usr/lib/postgresql/13/bin$ cd /uol
+-bash: cd: /uol: No such file or directory
+postgres@webonise:/usr/lib/postgresql/13/bin$ cd /u01
+-bash: cd: /u01: No such file or directory
+postgres@webonise:/usr/lib/postgresql/13/bin$ cd $HOME
+postgres@webonise:~$ pwd
+/var/lib/postgresql
+postgres@webonise:~$ cd C:\
+> ^C
+postgres@webonise:~$ pwd
+/var/lib/postgresql
+postgres@webonise:~$ cd \
+> ^C
+postgres@webonise:~$ cd /
+postgres@webonise:/$ pwd
+/
+postgres@webonise:/$ dir
+backup	boot   dev  home	initrd.img.old	lib64	    media  opt	 root  sbin  srv  tmp  var	vmlinuz.old
+bin	cdrom  etc  initrd.img	lib		lost+found  mnt    proc  run   snap  sys  usr  vmlinuz
+postgres@webonise:/$ cd home
+postgres@webonise:/home$ dir
+webonise
+postgres@webonise:/home$ cd webonise
+postgres@webonise:/home/webonise$ ls
+ 3055.dat   3063.dat   3073.dat   blog-application.js   dvdrental_backup.tar   Pictures		   rubygems-1.5.0	  Templates
+ 3057.dat   3065.dat   3075.dat  'dbms ass querys'      examples.desktop       Public		   rubygems-1.8.11	  test_db
+ 3059.dat   3067.dat   3077.dat   Desktop	        git_workspace	       restore.sql	  'rubygems-1.8 (1).11'   toc.dat
+ 3061.dat   3069.dat   3079.dat   Documents	        IdeaProjects	       ruby-3.0.2	   rubygems-1.8.11.tgz	  Videos
+ 3062.dat   3071.dat   3081.dat   Downloads	        Music		       ruby-3.0.2.tar.gz   snap
+postgres@webonise:/home/webonise$ dir
+3055.dat  3063.dat  3073.dat  blog-application.js  dvdrental_backup.tar  Pictures	    rubygems-1.5.0	  Templates
+3057.dat  3065.dat  3075.dat  dbms\ ass\ querys    examples.desktop	 Public		    rubygems-1.8.11	  test_db
+3059.dat  3067.dat  3077.dat  Desktop		   git_workspace	 restore.sql	    rubygems-1.8\ (1).11  toc.dat
+3061.dat  3069.dat  3079.dat  Documents		   IdeaProjects		 ruby-3.0.2	    rubygems-1.8.11.tgz   Videos
+3062.dat  3071.dat  3081.dat  Downloads		   Music		 ruby-3.0.2.tar.gz  snap
+postgres@webonise:/home/webonise$ pwd
+/home/webonise
+postgres@webonise:/home/webonise$ dir
+3055.dat  3063.dat  3073.dat  blog-application.js  dvdrental_backup.tar  Pictures	    rubygems-1.5.0	  Templates
+3057.dat  3065.dat  3075.dat  dbms\ ass\ querys    examples.desktop	 Public		    rubygems-1.8.11	  test_db
+3059.dat  3067.dat  3077.dat  Desktop		   git_workspace	 restore.sql	    rubygems-1.8\ (1).11  toc.dat
+3061.dat  3069.dat  3079.dat  Documents		   IdeaProjects		 ruby-3.0.2	    rubygems-1.8.11.tgz   Videos
+3062.dat  3071.dat  3081.dat  Downloads		   Music		 ruby-3.0.2.tar.gz  snap
+postgres@webonise:/home/webonise$ cd /usr/lib/postgresql/13/bin
+postgres@webonise:/usr/lib/postgresql/13/bin$ pg_restore --dbname=dvdrental --verbose
+^C
+postgres@webonise:/usr/lib/postgresql/13/bin$ pg_restore --dbname=dvdrental --verbose /home/webonise/dvdrental_backup.tar
+pg_restore: connecting to database for restore
+pg_restore: creating TYPE "public.mpaa_rating"
+pg_restore: creating DOMAIN "public.year"
+pg_restore: creating FUNCTION "public._group_concat(text, text)"
+pg_restore: creating FUNCTION "public.film_in_stock(integer, integer)"
+pg_restore: creating FUNCTION "public.film_not_in_stock(integer, integer)"
+pg_restore: creating FUNCTION "public.get_customer_balance(integer, timestamp without time zone)"
+pg_restore: creating FUNCTION "public.inventory_held_by_customer(integer)"
+pg_restore: creating FUNCTION "public.inventory_in_stock(integer)"
+pg_restore: creating FUNCTION "public.last_day(timestamp without time zone)"
+pg_restore: creating FUNCTION "public.last_updated()"
+pg_restore: creating SEQUENCE "public.customer_customer_id_seq"
+pg_restore: creating TABLE "public.customer"
+pg_restore: creating FUNCTION "public.rewards_report(integer, numeric)"
+pg_restore: creating AGGREGATE "public.group_concat(text)"
+pg_restore: creating SEQUENCE "public.actor_actor_id_seq"
+pg_restore: creating TABLE "public.actor"
+pg_restore: creating SEQUENCE "public.category_category_id_seq"
+pg_restore: creating TABLE "public.category"
+pg_restore: creating SEQUENCE "public.film_film_id_seq"
+pg_restore: creating TABLE "public.film"
+pg_restore: creating TABLE "public.film_actor"
+pg_restore: creating TABLE "public.film_category"
+pg_restore: creating VIEW "public.actor_info"
+pg_restore: creating SEQUENCE "public.address_address_id_seq"
+pg_restore: creating TABLE "public.address"
+pg_restore: creating SEQUENCE "public.city_city_id_seq"
+pg_restore: creating TABLE "public.city"
+pg_restore: creating SEQUENCE "public.country_country_id_seq"
+pg_restore: creating TABLE "public.country"
+pg_restore: creating VIEW "public.customer_list"
+pg_restore: creating VIEW "public.film_list"
+pg_restore: creating SEQUENCE "public.inventory_inventory_id_seq"
+pg_restore: creating TABLE "public.inventory"
+pg_restore: creating SEQUENCE "public.language_language_id_seq"
+pg_restore: creating TABLE "public.language"
+pg_restore: creating VIEW "public.nicer_but_slower_film_list"
+pg_restore: creating SEQUENCE "public.payment_payment_id_seq"
+pg_restore: creating TABLE "public.payment"
+pg_restore: creating SEQUENCE "public.rental_rental_id_seq"
+pg_restore: creating TABLE "public.rental"
+pg_restore: creating VIEW "public.sales_by_film_category"
+pg_restore: creating SEQUENCE "public.staff_staff_id_seq"
+pg_restore: creating TABLE "public.staff"
+pg_restore: creating SEQUENCE "public.store_store_id_seq"
+pg_restore: creating TABLE "public.store"
+pg_restore: creating VIEW "public.sales_by_store"
+pg_restore: creating VIEW "public.staff_list"
+pg_restore: processing data for table "public.actor"
+pg_restore: processing data for table "public.address"
+pg_restore: processing data for table "public.category"
+pg_restore: processing data for table "public.city"
+pg_restore: processing data for table "public.country"
+pg_restore: processing data for table "public.customer"
+pg_restore: processing data for table "public.film"
+pg_restore: processing data for table "public.film_actor"
+pg_restore: processing data for table "public.film_category"
+pg_restore: processing data for table "public.inventory"
+pg_restore: processing data for table "public.language"
+pg_restore: processing data for table "public.payment"
+pg_restore: processing data for table "public.rental"
+pg_restore: processing data for table "public.staff"
+pg_restore: processing data for table "public.store"
+pg_restore: executing SEQUENCE SET actor_actor_id_seq
+pg_restore: executing SEQUENCE SET address_address_id_seq
+pg_restore: executing SEQUENCE SET category_category_id_seq
+pg_restore: executing SEQUENCE SET city_city_id_seq
+pg_restore: executing SEQUENCE SET country_country_id_seq
+pg_restore: executing SEQUENCE SET customer_customer_id_seq
+pg_restore: executing SEQUENCE SET film_film_id_seq
+pg_restore: executing SEQUENCE SET inventory_inventory_id_seq
+pg_restore: executing SEQUENCE SET language_language_id_seq
+pg_restore: executing SEQUENCE SET payment_payment_id_seq
+pg_restore: executing SEQUENCE SET rental_rental_id_seq
+pg_restore: executing SEQUENCE SET staff_staff_id_seq
+pg_restore: executing SEQUENCE SET store_store_id_seq
+pg_restore: creating CONSTRAINT "public.actor actor_pkey"
+pg_restore: creating CONSTRAINT "public.address address_pkey"
+pg_restore: creating CONSTRAINT "public.category category_pkey"
+pg_restore: creating CONSTRAINT "public.city city_pkey"
+pg_restore: creating CONSTRAINT "public.country country_pkey"
+pg_restore: creating CONSTRAINT "public.customer customer_pkey"
+pg_restore: creating CONSTRAINT "public.film_actor film_actor_pkey"
+pg_restore: creating CONSTRAINT "public.film_category film_category_pkey"
+pg_restore: creating CONSTRAINT "public.film film_pkey"
+pg_restore: creating CONSTRAINT "public.inventory inventory_pkey"
+pg_restore: creating CONSTRAINT "public.language language_pkey"
+pg_restore: creating CONSTRAINT "public.payment payment_pkey"
+pg_restore: creating CONSTRAINT "public.rental rental_pkey"
+pg_restore: creating CONSTRAINT "public.staff staff_pkey"
+pg_restore: creating CONSTRAINT "public.store store_pkey"
+pg_restore: creating INDEX "public.film_fulltext_idx"
+pg_restore: creating INDEX "public.idx_actor_last_name"
+pg_restore: creating INDEX "public.idx_fk_address_id"
+pg_restore: creating INDEX "public.idx_fk_city_id"
+pg_restore: creating INDEX "public.idx_fk_country_id"
+pg_restore: creating INDEX "public.idx_fk_customer_id"
+pg_restore: creating INDEX "public.idx_fk_film_id"
+pg_restore: creating INDEX "public.idx_fk_inventory_id"
+pg_restore: creating INDEX "public.idx_fk_language_id"
+pg_restore: creating INDEX "public.idx_fk_rental_id"
+pg_restore: creating INDEX "public.idx_fk_staff_id"
+pg_restore: creating INDEX "public.idx_fk_store_id"
+pg_restore: creating INDEX "public.idx_last_name"
+pg_restore: creating INDEX "public.idx_store_id_film_id"
+pg_restore: creating INDEX "public.idx_title"
+pg_restore: creating INDEX "public.idx_unq_manager_staff_id"
+pg_restore: creating INDEX "public.idx_unq_rental_rental_date_inventory_id_customer_id"
+pg_restore: creating TRIGGER "public.film film_fulltext_trigger"
+pg_restore: creating TRIGGER "public.actor last_updated"
+pg_restore: creating TRIGGER "public.address last_updated"
+pg_restore: creating TRIGGER "public.category last_updated"
+pg_restore: creating TRIGGER "public.city last_updated"
+pg_restore: creating TRIGGER "public.country last_updated"
+pg_restore: creating TRIGGER "public.customer last_updated"
+pg_restore: creating TRIGGER "public.film last_updated"
+pg_restore: creating TRIGGER "public.film_actor last_updated"
+pg_restore: creating TRIGGER "public.film_category last_updated"
+pg_restore: creating TRIGGER "public.inventory last_updated"
+pg_restore: creating TRIGGER "public.language last_updated"
+pg_restore: creating TRIGGER "public.rental last_updated"
+pg_restore: creating TRIGGER "public.staff last_updated"
+pg_restore: creating TRIGGER "public.store last_updated"
+pg_restore: creating FK CONSTRAINT "public.customer customer_address_id_fkey"
+pg_restore: creating FK CONSTRAINT "public.film_actor film_actor_actor_id_fkey"
+pg_restore: creating FK CONSTRAINT "public.film_actor film_actor_film_id_fkey"
+pg_restore: creating FK CONSTRAINT "public.film_category film_category_category_id_fkey"
+pg_restore: creating FK CONSTRAINT "public.film_category film_category_film_id_fkey"
+pg_restore: creating FK CONSTRAINT "public.film film_language_id_fkey"
+pg_restore: creating FK CONSTRAINT "public.address fk_address_city"
+pg_restore: creating FK CONSTRAINT "public.city fk_city"
+pg_restore: creating FK CONSTRAINT "public.inventory inventory_film_id_fkey"
+pg_restore: creating FK CONSTRAINT "public.payment payment_customer_id_fkey"
+pg_restore: creating FK CONSTRAINT "public.payment payment_rental_id_fkey"
+pg_restore: creating FK CONSTRAINT "public.payment payment_staff_id_fkey"
+pg_restore: creating FK CONSTRAINT "public.rental rental_customer_id_fkey"
+pg_restore: creating FK CONSTRAINT "public.rental rental_inventory_id_fkey"
+pg_restore: creating FK CONSTRAINT "public.rental rental_staff_id_key"
+pg_restore: creating FK CONSTRAINT "public.staff staff_address_id_fkey"
+pg_restore: creating FK CONSTRAINT "public.store store_address_id_fkey"
+pg_restore: creating FK CONSTRAINT "public.store store_manager_staff_id_fkey"
+postgres@webonise:/usr/lib/postgresql/13/bin$ ^C
+postgres@webonise:/usr/lib/postgresql/13/bin$ ^C
+postgres@webonise:/usr/lib/postgresql/13/bin$ ^C
+postgres@webonise:/usr/lib/postgresql/13/bin$ 
+
+
